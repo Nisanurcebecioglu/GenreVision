@@ -49,9 +49,11 @@ MODEL_CONFIGS = {
 
 DEFAULT_MODEL = 'custom'
 
-app = FastAPI(title='GenreVision API v3')
+app = FastAPI(title='GenreVision API')
+
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://genrevision.netlify.app")
 app.add_middleware(CORSMiddleware,
-    allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
+    allow_origins=[FRONTEND_URL, "http://localhost:5500", "http://127.0.0.1:5500"],allow_credentials=True, allow_methods=['*'], allow_headers=['*'])
 
 device = torch.device('cpu')
 
