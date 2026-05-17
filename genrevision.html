@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GenreVision | AI Movie Poster Analysis</title>
+  <title>GenreVision | AI Film Afişi Analizi</title>
   <style>
     :root {
       --bg: #030508;
@@ -28,15 +28,8 @@
       --radius-md: 16px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -98,7 +91,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 16px;
       padding: 14px 18px;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 999px;
@@ -125,20 +118,11 @@
         linear-gradient(135deg, rgba(53,230,255,0.25), rgba(255,147,79,0.24));
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: 0 0 32px rgba(53, 230, 255, 0.18);
-      position: relative;
     }
 
-    .brand-icon svg {
-      width: 24px;
-      height: 24px;
-      filter: drop-shadow(0 0 10px rgba(53,230,255,0.45));
-    }
+    .brand-icon svg { width: 24px; height: 24px; filter: drop-shadow(0 0 10px rgba(53,230,255,0.45)); }
 
-    .brand-name {
-      font-size: 1.08rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
+    .brand-name { font-size: 1.08rem; font-weight: 800; letter-spacing: -0.03em; }
 
     .brand-sub {
       display: block;
@@ -169,11 +153,40 @@
       transition: 0.25s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover, .nav-links a.active {
       color: white;
       background: rgba(255,255,255,0.08);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      min-width: max-content;
+    }
+
+    .lang-btn {
+      border: 0;
+      cursor: pointer;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      background: transparent;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: rgba(255,255,255,0.13);
+      color: white;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
     }
 
     .nav-action {
@@ -187,6 +200,7 @@
       background: linear-gradient(135deg, var(--cyan), var(--orange));
       box-shadow: 0 0 34px rgba(53,230,255,0.22), 0 0 28px rgba(255,147,79,0.18);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      white-space: nowrap;
     }
 
     .nav-action:hover {
@@ -202,10 +216,7 @@
       margin-top: 44px;
     }
 
-    .left-stage,
-    .result-panel {
-      min-height: 675px;
-    }
+    .left-stage, .result-panel { min-height: 675px; }
 
     .eyebrow {
       display: inline-flex;
@@ -273,18 +284,8 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
-    .metric-card strong {
-      display: block;
-      font-size: 1.45rem;
-      letter-spacing: -0.05em;
-    }
-
-    .metric-card span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
+    .metric-card strong { display: block; font-size: 1.45rem; letter-spacing: -0.05em; }
+    .metric-card span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.82rem; }
 
     .workspace {
       margin-top: 18px;
@@ -335,8 +336,7 @@
       box-shadow: 0 0 70px rgba(53,230,255,0.18), inset 0 0 50px rgba(53,230,255,0.08);
     }
 
-    .dropzone::before,
-    .dropzone::after {
+    .dropzone::before, .dropzone::after {
       content: "";
       position: absolute;
       width: 70px;
@@ -346,22 +346,8 @@
       filter: drop-shadow(0 0 12px rgba(53,230,255,0.36));
     }
 
-    .dropzone::before {
-      top: 20px;
-      left: 20px;
-      border-top: 2px solid;
-      border-left: 2px solid;
-      border-top-left-radius: 18px;
-    }
-
-    .dropzone::after {
-      right: 20px;
-      bottom: 20px;
-      border-right: 2px solid rgba(255,147,79,0.7);
-      border-bottom: 2px solid rgba(255,147,79,0.7);
-      border-bottom-right-radius: 18px;
-      filter: drop-shadow(0 0 12px rgba(255,147,79,0.32));
-    }
+    .dropzone::before { top: 20px; left: 20px; border-top: 2px solid; border-left: 2px solid; border-top-left-radius: 18px; }
+    .dropzone::after { right: 20px; bottom: 20px; border-right: 2px solid rgba(255,147,79,0.7); border-bottom: 2px solid rgba(255,147,79,0.7); border-bottom-right-radius: 18px; filter: drop-shadow(0 0 12px rgba(255,147,79,0.32)); }
 
     .scan-grid {
       position: absolute;
@@ -378,8 +364,7 @@
 
     .scan-line {
       position: absolute;
-      left: 8%;
-      right: 8%;
+      left: 8%; right: 8%;
       height: 2px;
       top: 0;
       background: linear-gradient(90deg, transparent, var(--cyan), white, var(--orange), transparent);
@@ -388,10 +373,7 @@
       pointer-events: none;
     }
 
-    .dropzone.scanning .scan-line {
-      opacity: 1;
-      animation: scan 1.45s ease-in-out infinite;
-    }
+    .dropzone.scanning .scan-line { opacity: 1; animation: scan 1.45s ease-in-out infinite; }
 
     @keyframes scan {
       0% { transform: translateY(20px); opacity: 0; }
@@ -400,11 +382,7 @@
       100% { transform: translateY(280px); opacity: 0; }
     }
 
-    .upload-content {
-      position: relative;
-      z-index: 2;
-      max-width: 560px;
-    }
+    .upload-content { position: relative; z-index: 2; max-width: 560px; }
 
     .upload-orb {
       width: 86px;
@@ -420,31 +398,13 @@
       box-shadow: 0 0 56px rgba(53,230,255,0.20), inset 0 0 22px rgba(255,255,255,0.05);
     }
 
-    .upload-orb svg {
-      width: 42px;
-      height: 42px;
-    }
+    .upload-orb svg { width: 42px; height: 42px; }
 
-    .drop-title {
-      font-size: clamp(1.8rem, 3vw, 2.65rem);
-      line-height: 1;
-      letter-spacing: -0.055em;
-      font-weight: 920;
-    }
+    .drop-title { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1; letter-spacing: -0.055em; font-weight: 920; }
 
-    .drop-subtitle {
-      margin: 14px auto 24px;
-      color: #99a8bb;
-      line-height: 1.7;
-      max-width: 520px;
-    }
+    .drop-subtitle { margin: 14px auto 24px; color: #99a8bb; line-height: 1.7; max-width: 520px; }
 
-    .input-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 12px;
-      margin-top: 18px;
-    }
+    .input-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; margin-top: 18px; }
 
     .url-input {
       width: 100%;
@@ -458,10 +418,7 @@
       transition: 0.2s ease;
     }
 
-    .url-input:focus {
-      border-color: rgba(53,230,255,0.5);
-      box-shadow: 0 0 0 4px rgba(53,230,255,0.08);
-    }
+    .url-input:focus { border-color: rgba(53,230,255,0.5); box-shadow: 0 0 0 4px rgba(53,230,255,0.08); }
 
     .btn {
       border: 0;
@@ -477,10 +434,7 @@
       white-space: nowrap;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.08);
-    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
 
     .ghost-btn {
       display: inline-flex;
@@ -497,23 +451,11 @@
       transition: 0.22s ease;
     }
 
-    .ghost-btn:hover {
-      border-color: rgba(53,230,255,0.38);
-      background: rgba(53,230,255,0.08);
-    }
+    .ghost-btn:hover { border-color: rgba(53,230,255,0.38); background: rgba(53,230,255,0.08); }
 
-    .file-meta {
-      margin-top: 15px;
-      color: var(--muted-2);
-      font-size: 0.83rem;
-    }
+    .file-meta { margin-top: 15px; color: var(--muted-2); font-size: 0.83rem; }
 
-    .mini-flow {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
+    .mini-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
 
     .flow-card {
       position: relative;
@@ -543,18 +485,8 @@
       margin-bottom: 14px;
     }
 
-    .flow-card strong {
-      display: block;
-      font-size: 0.98rem;
-      letter-spacing: -0.025em;
-    }
-
-    .flow-card p {
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.55;
-    }
+    .flow-card strong { display: block; font-size: 0.98rem; letter-spacing: -0.025em; }
+    .flow-card p { margin-top: 7px; color: var(--muted); font-size: 0.84rem; line-height: 1.55; }
 
     .result-panel {
       position: relative;
@@ -590,19 +522,8 @@
       z-index: 1;
     }
 
-    .panel-title small {
-      color: var(--muted-2);
-      font-size: 0.77rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .panel-title h2 {
-      margin-top: 4px;
-      font-size: 1.55rem;
-      letter-spacing: -0.05em;
-    }
+    .panel-title small { color: var(--muted-2); font-size: 0.77rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+    .panel-title h2 { margin-top: 4px; font-size: 1.55rem; letter-spacing: -0.05em; }
 
     .status {
       display: inline-flex;
@@ -618,14 +539,7 @@
       white-space: nowrap;
     }
 
-    .status i {
-      width: 8px;
-      height: 8px;
-      display: block;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 16px var(--green);
-    }
+    .status i { width: 8px; height: 8px; display: block; border-radius: 50%; background: var(--green); box-shadow: 0 0 16px var(--green); }
 
     .poster-preview-wrap {
       display: grid;
@@ -649,16 +563,8 @@
       box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 34px rgba(53,230,255,0.10);
     }
 
-    .poster-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-
-    .poster-preview.has-image img {
-      display: block;
-    }
+    .poster-preview img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .poster-preview.has-image img { display: block; }
 
     .poster-placeholder {
       position: absolute;
@@ -670,24 +576,9 @@
       color: rgba(255,255,255,0.82);
     }
 
-    .poster-preview.has-image .poster-placeholder {
-      display: none;
-    }
-
-    .poster-placeholder strong {
-      display: block;
-      margin-top: 10px;
-      font-size: 1.05rem;
-      letter-spacing: -0.03em;
-    }
-
-    .poster-placeholder span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.45;
-    }
+    .poster-preview.has-image .poster-placeholder { display: none; }
+    .poster-placeholder strong { display: block; margin-top: 10px; font-size: 1.05rem; letter-spacing: -0.03em; }
+    .poster-placeholder span { display: block; margin-top: 5px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
 
     .confidence-card {
       padding: 17px;
@@ -700,11 +591,7 @@
       min-width: 0;
     }
 
-    .confidence-card p {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.6;
-    }
+    .confidence-card p { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
 
     .score-ring {
       position: relative;
@@ -729,13 +616,7 @@
       border: 1px solid rgba(255,255,255,0.07);
     }
 
-    .score-ring span {
-      position: relative;
-      z-index: 1;
-      font-size: 1.45rem;
-      font-weight: 950;
-      letter-spacing: -0.06em;
-    }
+    .score-ring span { position: relative; z-index: 1; font-size: 1.45rem; font-weight: 950; letter-spacing: -0.06em; }
 
     .section-label {
       margin: 24px 0 14px;
@@ -747,23 +628,10 @@
       z-index: 1;
     }
 
-    .section-label h3 {
-      font-size: 1rem;
-      letter-spacing: -0.025em;
-    }
+    .section-label h3 { font-size: 1rem; letter-spacing: -0.025em; }
+    .section-label span { color: var(--muted-2); font-size: 0.8rem; font-weight: 750; }
 
-    .section-label span {
-      color: var(--muted-2);
-      font-size: 0.8rem;
-      font-weight: 750;
-    }
-
-    .genre-list {
-      display: grid;
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
+    .genre-list { display: grid; gap: 12px; position: relative; z-index: 1; }
 
     .genre-row {
       padding: 13px;
@@ -772,43 +640,15 @@
       border: 1px solid rgba(255,255,255,0.075);
     }
 
-    .genre-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 10px;
-    }
+    .genre-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 10px; }
 
-    .genre-name {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-weight: 850;
-      font-size: 0.91rem;
-      letter-spacing: -0.015em;
-    }
+    .genre-name { display: flex; align-items: center; gap: 9px; font-weight: 850; font-size: 0.91rem; letter-spacing: -0.015em; }
 
-    .genre-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--bar-color);
-      box-shadow: 0 0 14px var(--bar-color);
-    }
+    .genre-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--bar-color); box-shadow: 0 0 14px var(--bar-color); }
 
-    .genre-value {
-      color: #e7eef9;
-      font-weight: 850;
-      font-size: 0.86rem;
-    }
+    .genre-value { color: #e7eef9; font-weight: 850; font-size: 0.86rem; }
 
-    .bar {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
+    .bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
 
     .bar-fill {
       height: 100%;
@@ -819,125 +659,104 @@
       transition: width 1.05s cubic-bezier(0.2, 0.9, 0.2, 1);
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tag {
-      color: #cfe8ee;
-      font-size: 0.79rem;
-      font-weight: 760;
-      padding: 9px 11px;
-      border-radius: 999px;
-      background: rgba(53,230,255,0.075);
-      border: 1px solid rgba(53,230,255,0.13);
-    }
-
-    .insight {
-      margin-top: 16px;
-      padding: 17px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,147,79,0.16);
-      background:
-        radial-gradient(circle at 12% 20%, rgba(255,147,79,0.13), transparent 35%),
-        rgba(255,255,255,0.045);
-      position: relative;
-      z-index: 1;
-    }
-
-    .insight strong {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.92rem;
-      letter-spacing: -0.02em;
-    }
-
-    .insight p {
-      margin-top: 10px;
-      color: #aab6c8;
-      font-size: 0.88rem;
-      line-height: 1.65;
-    }
-
-    .api-note {
-      margin-top: 20px;
-      padding: 14px 16px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.035);
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-    }
-
-    .api-note code {
-      color: #dbfbff;
-      background: rgba(53,230,255,0.08);
-      border: 1px solid rgba(53,230,255,0.10);
-      padding: 2px 6px;
-      border-radius: 8px;
-    }
-
-    .features {
-      margin-top: 28px;
+    /* Feature cards inside result panel */
+    .result-features {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .feature-card {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+      margin-top: 12px;
       position: relative;
-      padding: 22px;
-      min-height: 180px;
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.085);
-      background: rgba(255,255,255,0.042);
-      backdrop-filter: blur(18px);
-      overflow: hidden;
+      z-index: 1;
     }
 
-    .feature-card::before {
+    .result-feature-card {
+      padding: 15px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.042);
+      border: 1px solid rgba(255,255,255,0.075);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .result-feature-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(53,230,255,0.12), transparent 35%);
-      opacity: 0.9;
+      background: radial-gradient(circle at top left, rgba(53,230,255,0.10), transparent 38%);
       pointer-events: none;
     }
 
-    .feature-card:nth-child(even)::before {
-      background: radial-gradient(circle at top left, rgba(255,147,79,0.12), transparent 35%);
+    .result-feature-card:nth-child(even)::before {
+      background: radial-gradient(circle at top left, rgba(255,147,79,0.10), transparent 38%);
     }
 
-    .feature-card .flow-icon,
-    .feature-card h3,
-    .feature-card p {
+    .result-feature-card .flow-icon,
+    .result-feature-card strong,
+    .result-feature-card p {
       position: relative;
       z-index: 1;
     }
 
-    .feature-card h3 {
-      margin-top: 16px;
-      font-size: 1.08rem;
-      letter-spacing: -0.035em;
-    }
+    .result-feature-card strong { display: block; margin-top: 9px; font-size: 0.90rem; letter-spacing: -0.025em; }
+    .result-feature-card p { margin-top: 5px; color: var(--muted); font-size: 0.79rem; line-height: 1.50; }
 
-    .feature-card p {
-      margin-top: 10px;
+    .hidden-input { display: none; }
+
+    .model-selector { margin-bottom: 16px; }
+
+    .model-selector-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.88rem;
+      margin-bottom: 10px;
     }
 
-    .hidden-input {
-      display: none;
+    .model-btns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .model-btn {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
+      padding: 12px 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
+      color: var(--muted);
+    }
+
+    .model-btn:hover {
+      border-color: rgba(53,230,255,0.38);
+      background: rgba(53,230,255,0.07);
+      color: white;
+    }
+
+    .model-btn.active {
+      border-color: rgba(53,230,255,0.60);
+      background: rgba(53,230,255,0.12);
+      color: white;
+      box-shadow: 0 0 28px rgba(53,230,255,0.14);
+    }
+
+    .model-btn-name {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+    }
+
+    .model-btn-arch {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.70rem;
+      font-weight: 700;
+      opacity: 0.65;
+      letter-spacing: 0.04em;
     }
 
     .toast {
@@ -961,69 +780,23 @@
       line-height: 1.5;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .toast.show { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 1120px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .left-stage,
-      .result-panel {
-        min-height: auto;
-      }
-
-      .features {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .hero { grid-template-columns: 1fr; }
+      .left-stage, .result-panel { min-height: auto; }
     }
 
     @media (max-width: 760px) {
-      .app {
-        width: min(100% - 26px, 1440px);
-        padding-top: 16px;
-      }
-
-      .nav {
-        align-items: flex-start;
-        border-radius: 26px;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        width: 100%;
-        overflow-x: auto;
-      }
-
-      .nav-action {
-        width: 100%;
-      }
-
-      .hero {
-        margin-top: 28px;
-      }
-
-      .metrics,
-      .mini-flow,
-      .features,
-      .poster-preview-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: clamp(3rem, 18vw, 4.3rem);
-      }
-
-      .input-row {
-        grid-template-columns: 1fr;
-      }
-
-      .poster-preview {
-        min-height: 330px;
-      }
+      .app { width: min(100% - 26px, 1440px); padding-top: 16px; }
+      .nav { align-items: flex-start; border-radius: 26px; flex-direction: column; }
+      .nav-links { width: 100%; overflow-x: auto; }
+      .nav-action { width: 100%; }
+      .hero { margin-top: 28px; }
+      .metrics, .mini-flow, .result-features, .poster-preview-wrap { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(3rem, 18vw, 4.3rem); }
+      .input-row { grid-template-columns: 1fr; }
+      .poster-preview { min-height: 330px; }
     }
   </style>
 </head>
@@ -1031,7 +804,7 @@
   <div class="noise"></div>
 
   <main class="app">
-    <nav class="nav" aria-label="Ana navigasyon">
+    <nav class="nav" aria-label="Main navigation">
       <div class="brand">
         <div class="brand-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
@@ -1047,43 +820,66 @@
       </div>
 
       <div class="nav-links">
-        <a class="active" href="#analyze">Analyze</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#model">Model</a>
-        <a href="#results">Reports</a>
+        <a class="active" href="#analyze" data-i18n="navAnalyze">Analiz</a>
+        <a href="#workflow" data-i18n="navWorkflow">Akış</a>
+        <a href="#model" data-i18n="navModel">Model</a>
+        <a href="#results" data-i18n="navReports">Raporlar</a>
       </div>
 
-      <button class="nav-action" onclick="document.getElementById('posterFile').click()">Start Analysis</button>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <button class="nav-action" onclick="document.getElementById('posterFile').click()" data-i18n="navAction">Analizi Başlat</button>
     </nav>
 
     <section class="hero" id="analyze">
       <div class="left-stage">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> AI powered movie poster analysis</div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> <span data-i18n="eyebrow">Yapay zeka destekli film afişi analizi</span></div>
 
-        <h1>
-          Decode the genre behind <span class="gradient-text">every poster.</span>
+        <h1 data-i18n="h1">
+          Her afişin arkasındaki <span class="gradient-text">türü çöz.</span>
         </h1>
 
-        <p class="hero-copy">
+        <p class="hero-copy" data-i18n="heroCopy">
           GenreVision, bir film afişinin renklerini, kompozisyonunu, görsel dokusunu ve sinematik sinyallerini analiz ederek filmin hangi türlere ait olduğunu saniyeler içinde tahmin eden görsel zeka platformudur.
         </p>
 
         <div class="metrics">
           <div class="metric-card">
             <strong>ResNet18</strong>
-            <span>Derin öğrenme modeli</span>
+            <span data-i18n="metricModelLabel">Derin öğrenme modeli</span>
           </div>
           <div class="metric-card">
-            <strong>19 tür</strong>
-            <span>Çoklu genre tahmini</span>
+            <strong data-i18n="metricGenre">19 tür</strong>
+            <span data-i18n="metricGenreLabel">Çoklu genre tahmini</span>
           </div>
           <div class="metric-card">
             <strong>Cloud API</strong>
-            <span>Railway + FastAPI</span>
+            <span data-i18n="metricCloudLabel">Railway + FastAPI</span>
           </div>
         </div>
 
         <div class="workspace">
+          <div class="model-selector">
+            <div class="model-selector-label" data-i18n="modelSelectorLabel">Model Seç</div>
+            <div class="model-btns" id="modelBtns">
+              <button class="model-btn active" data-model="custom">
+                <span class="model-btn-name">ResNet18</span>
+                <span class="model-btn-arch" data-i18n="modelCustomArch">Custom · v3</span>
+              </button>
+              <button class="model-btn" data-model="resnet50">
+                <span class="model-btn-name">ResNet50</span>
+                <span class="model-btn-arch" data-i18n="modelResnet50Arch">Deeper · v4</span>
+              </button>
+              <button class="model-btn" data-model="efficientnet">
+                <span class="model-btn-name">EfficientNet</span>
+                <span class="model-btn-arch" data-i18n="modelEfficientArch">B0 · Efficient</span>
+              </button>
+            </div>
+          </div>
+
           <div class="dropzone" id="dropzone">
             <div class="scan-grid"></div>
             <div class="scan-line"></div>
@@ -1097,19 +893,19 @@
                 </svg>
               </div>
 
-              <div class="drop-title">Afişi laboratuvara bırak.</div>
-              <p class="drop-subtitle">
+              <div class="drop-title" data-i18n="dropTitle">Afişi laboratuvara bırak.</div>
+              <p class="drop-subtitle" data-i18n="dropSubtitle">
                 Görseli sürükle-bırak, dosya seç veya afiş URL'si yapıştır. Sistem afişi okuyup tür olasılıklarını sinematik bir rapor olarak gösterir.
               </p>
 
               <button class="ghost-btn" onclick="document.getElementById('posterFile').click()">
-                <span>Dosya Seç</span>
+                <span data-i18n="chooseFile">Dosya Seç</span>
               </button>
               <input class="hidden-input" id="posterFile" type="file" accept="image/png,image/jpeg,image/webp" />
 
               <div class="input-row">
-                <input class="url-input" id="posterUrl" type="url" placeholder="Afiş görsel linki yapıştır: https://..." />
-                <button class="btn" id="analyzeUrlBtn">Analiz Et</button>
+                <input class="url-input" id="posterUrl" type="url" data-i18n-placeholder="urlPlaceholder" placeholder="Afiş görsel linki yapıştır: https://..." />
+                <button class="btn" id="analyzeUrlBtn" data-i18n="analyzeBtn">Analiz Et</button>
               </div>
 
               <div class="file-meta" id="fileMeta">JPG, PNG, WEBP desteklenir. Önerilen maksimum dosya: 20MB.</div>
@@ -1119,18 +915,18 @@
           <div class="mini-flow" id="workflow">
             <div class="flow-card">
               <div class="flow-icon">🎞️</div>
-              <strong>1. Afişi alır</strong>
-              <p>Kullanıcının yüklediği dosya veya URL, analiz akışına gönderilir.</p>
+              <strong data-i18n="flow1Title">1. Afişi alır</strong>
+              <p data-i18n="flow1Desc">Kullanıcının yüklediği dosya veya URL, analiz akışına gönderilir.</p>
             </div>
             <div class="flow-card">
               <div class="flow-icon">🧠</div>
-              <strong>2. Model okur</strong>
-              <p>ResNet18 afişteki görsel desenleri ve tür sinyallerini inceler.</p>
+              <strong data-i18n="flow2Title">2. Model okur</strong>
+              <p data-i18n="flow2Desc">ResNet18 afişteki görsel desenleri ve tür sinyallerini inceler.</p>
             </div>
             <div class="flow-card">
               <div class="flow-icon">📊</div>
-              <strong>3. Sonuç üretir</strong>
-              <p>19 film türü için olasılıklar, güven skoru ve görsel yorum döner.</p>
+              <strong data-i18n="flow3Title">3. Sonuç üretir</strong>
+              <p data-i18n="flow3Desc">19 film türü için olasılıklar, güven skoru ve görsel yorum döner.</p>
             </div>
           </div>
         </div>
@@ -1139,148 +935,294 @@
       <aside class="result-panel" id="results">
         <div class="panel-top">
           <div class="panel-title">
-            <small>Live Intelligence</small>
-            <h2>AI Genre Prediction</h2>
+            <small data-i18n="panelSmall">Canlı Zeka</small>
+            <h2 data-i18n="panelH2">YZ Tür Tahmini</h2>
           </div>
-          <div class="status"><i></i><span id="statusText">Analysis Ready</span></div>
+          <div class="status"><i></i><span id="statusText">Analiz Hazır</span></div>
         </div>
 
         <div class="poster-preview-wrap">
           <div class="poster-preview" id="posterPreview">
-            <img id="previewImage" alt="Analiz edilen film afişi önizlemesi" />
+            <img id="previewImage" alt="Movie poster preview" />
             <div class="poster-placeholder">
               <div>
                 <div style="font-size: 2.4rem;">🎬</div>
-                <strong>Poster Preview</strong>
-                <span>Analiz edilecek afiş burada sinematik çerçeve içinde görünür.</span>
+                <strong data-i18n="posterPreviewTitle">Afiş Önizleme</strong>
+                <span data-i18n="posterPreviewDesc">Analiz edilecek afiş burada sinematik çerçeve içinde görünür.</span>
               </div>
             </div>
           </div>
 
-          <div class="confidence-card">
+          <div class="confidence-card" id="model">
             <div>
-              <p>Genel güven skoru, modelin en güçlü tür tahminine göre hesaplanır.</p>
+              <p data-i18n="confidenceDesc">Genel güven skoru, modelin en güçlü tür tahminine göre hesaplanır.</p>
               <div class="score-ring" id="scoreRing" style="--score: 92">
                 <span id="confidenceText">92%</span>
               </div>
             </div>
-            <p><strong style="color:white;">Top Signal:</strong> <span id="topSignal">Sci-Fi / Thriller</span></p>
+            <p><strong style="color:white;" data-i18n="topSignalLabel">En Güçlü Sinyal:</strong> <span id="topSignal">Sci-Fi / Thriller</span></p>
           </div>
         </div>
 
         <div class="section-label">
-          <h3>Genre Probability Matrix</h3>
-          <span id="updatedText">Mock preview</span>
+          <h3 data-i18n="genreMatrix">Tür Olasılık Matrisi</h3>
+          <span id="updatedText">Demo önizleme</span>
         </div>
 
         <div class="genre-list" id="genreList"></div>
 
-        <div class="section-label">
-          <h3>Visual Signals Detected</h3>
-          <span>Poster DNA</span>
+        <div class="section-label" style="margin-top: 20px;">
+          <h3 data-i18n="featuresLabel">Özellikler</h3>
         </div>
 
-        <div class="tags" id="tags">
-          <span class="tag">Neon Lighting</span>
-          <span class="tag">Dark Atmosphere</span>
-          <span class="tag">High Contrast</span>
-          <span class="tag">Dramatic Pose</span>
-          <span class="tag">Futuristic Texture</span>
-        </div>
-
-        <div class="insight">
-          <strong>✨ AI Insight</strong>
-          <p id="insightText">
-            Afiş, koyu atmosferi, yüksek kontrastı ve soğuk neon ışık diliyle bilim kurgu / gerilim türlerine yakın bir görsel kimlik gösteriyor.
-          </p>
-        </div>
-
-        <div class="api-note" id="model">
-          Backend bağlamak için JavaScript içindeki <code>API_URL</code> değerini Railway FastAPI endpoint'inle değiştir. API kapalıysa arayüz otomatik olarak demo tahminleriyle çalışır.
+        <div class="result-features">
+          <article class="result-feature-card">
+            <div class="flow-icon">🖼️</div>
+            <strong data-i18n="feat1Title">Poster Intelligence</strong>
+            <p data-i18n="feat1Desc">Afişteki renk, kadraj, karakter duruşu ve görsel tonu anlamlandıran akıllı analiz deneyimi.</p>
+          </article>
+          <article class="result-feature-card">
+            <div class="flow-icon">☁️</div>
+            <strong data-i18n="feat2Title">Cloud Ready</strong>
+            <p data-i18n="feat2Desc">Cloudflare R2 depolama ve Railway üzerindeki FastAPI servisiyle canlı kullanıma hazır yapı.</p>
+          </article>
+          <article class="result-feature-card">
+            <div class="flow-icon">⚡</div>
+            <strong data-i18n="feat3Title">Fast Prediction</strong>
+            <p data-i18n="feat3Desc">Kullanıcı tek tıkla afişi gönderir; model saniyeler içinde tür olasılıklarını döndürür.</p>
+          </article>
+          <article class="result-feature-card">
+            <div class="flow-icon">🎭</div>
+            <strong data-i18n="feat4Title">19 Genre Output</strong>
+            <p data-i18n="feat4Desc">Aksiyon, Dram, Korku, Animasyon, Romantik, Savaş ve daha fazla tür için çoklu tahmin.</p>
+          </article>
         </div>
       </aside>
     </section>
-
-    <section class="features">
-      <article class="feature-card">
-        <div class="flow-icon">🖼️</div>
-        <h3>Poster Intelligence</h3>
-        <p>Afişteki renk, kadraj, karakter duruşu ve görsel tonu anlamlandıran akıllı analiz deneyimi.</p>
-      </article>
-      <article class="feature-card">
-        <div class="flow-icon">☁️</div>
-        <h3>Cloud Ready</h3>
-        <p>Cloudflare R2 depolama ve Railway üzerindeki FastAPI servisiyle canlı kullanıma hazır yapı.</p>
-      </article>
-      <article class="feature-card">
-        <div class="flow-icon">⚡</div>
-        <h3>Fast Prediction</h3>
-        <p>Kullanıcı tek tıkla afişi gönderir; model saniyeler içinde tür olasılıklarını döndürür.</p>
-      </article>
-      <article class="feature-card">
-        <div class="flow-icon">🎭</div>
-        <h3>19 Genre Output</h3>
-        <p>Aksiyon, Dram, Korku, Animasyon, Romantik, Savaş ve daha fazla tür için çoklu tahmin.</p>
-      </article>
-    </section>
   </main>
 
-  <div class="toast" id="toast">Analiz başlatıldı.</div>
+  <div class="toast" id="toast"></div>
 
   <script>
-    // Backend endpoint'leri
+    const lang = {
+      tr: {
+        navAnalyze: "Analiz", navWorkflow: "Akış", navModel: "Model", navReports: "Raporlar",
+        navAction: "Analizi Başlat",
+        eyebrow: "Yapay zeka destekli film afişi analizi",
+        h1: 'Her afişin arkasındaki <span class="gradient-text">türü çöz.</span>',
+        heroCopy: "GenreVision, bir film afişinin renklerini, kompozisyonunu, görsel dokusunu ve sinematik sinyallerini analiz ederek filmin hangi türlere ait olduğunu saniyeler içinde tahmin eden görsel zeka platformudur.",
+        metricModelLabel: "Derin öğrenme modeli",
+        metricGenre: "19 tür", metricGenreLabel: "Çoklu genre tahmini",
+        metricCloudLabel: "Railway + FastAPI",
+        dropTitle: "Afişi laboratuvara bırak.",
+        dropSubtitle: "Görseli sürükle-bırak, dosya seç veya afiş URL'si yapıştır. Sistem afişi okuyup tür olasılıklarını sinematik bir rapor olarak gösterir.",
+        chooseFile: "Dosya Seç",
+        urlPlaceholder: "Afiş görsel linki yapıştır: https://...",
+        analyzeBtn: "Analiz Et",
+        fileMeta: "JPG, PNG, WEBP desteklenir. Önerilen maksimum dosya: 20MB.",
+        fileSelectedMsg: "seçildi",
+        flow1Title: "1. Afişi alır", flow1Desc: "Kullanıcının yüklediği dosya veya URL, analiz akışına gönderilir.",
+        flow2Title: "2. Model okur", flow2Desc: "ResNet18 afişteki görsel desenleri ve tür sinyallerini inceler.",
+        flow3Title: "3. Sonuç üretir", flow3Desc: "19 film türü için olasılıklar, güven skoru ve görsel yorum döner.",
+        panelSmall: "Canlı Zeka", panelH2: "YZ Tür Tahmini",
+        statusReady: "Analiz Hazır", statusScanning: "Afiş Taranıyor",
+        statusComplete: "Analiz Tamamlandı", statusDemo: "Demo Sonuç",
+        posterPreviewTitle: "Afiş Önizleme",
+        posterPreviewDesc: "Analiz edilecek afiş burada sinematik çerçeve içinde görünür.",
+        confidenceDesc: "Genel güven skoru, modelin en güçlü tür tahminine göre hesaplanır.",
+        topSignalLabel: "En Güçlü Sinyal:",
+        genreMatrix: "Tür Olasılık Matrisi",
+        mockPreview: "Demo önizleme", apiUnavailable: "API erişilemiyor",
+        analyzingPixels: "Pikseller analiz ediliyor...",
+        featuresLabel: "Özellikler",
+        feat1Title: "Poster Intelligence", feat1Desc: "Afişteki renk, kadraj, karakter duruşu ve görsel tonu anlamlandıran akıllı analiz deneyimi.",
+        feat2Title: "Cloud Ready", feat2Desc: "Cloudflare R2 depolama ve Railway üzerindeki FastAPI servisiyle canlı kullanıma hazır yapı.",
+        feat3Title: "Fast Prediction", feat3Desc: "Kullanıcı tek tıkla afişi gönderir; model saniyeler içinde tür olasılıklarını döndürür.",
+        feat4Title: "19 Genre Output", feat4Desc: "Aksiyon, Dram, Korku, Animasyon, Romantik, Savaş ve daha fazla tür için çoklu tahmin.",
+        toastScanning: "GenreVision afişi tarıyor...",
+        toastComplete: "Analiz tamamlandı. Tür olasılıkları güncellendi.",
+        toastApiError: "API yanıt vermedi; demo sonuç gösterildi.",
+        toastNoUrl: "Önce bir afiş görsel linki yapıştır.",
+        toastUrlPreview: "URL üzerinden afiş önizlemesi alındı.",
+        toastInvalidFile: "Lütfen JPG, PNG veya WEBP formatında bir görsel yükle.",
+        modelSelectorLabel: "Model Seç",
+        modelCustomArch: "Özel · v3",
+        modelResnet50Arch: "Derin · v4",
+        modelEfficientArch: "B0 · Verimli",
+        locale: "tr-TR",
+        pageTitle: "GenreVision | AI Film Afişi Analizi"
+      },
+      en: {
+        navAnalyze: "Analyze", navWorkflow: "Workflow", navModel: "Model", navReports: "Reports",
+        navAction: "Start Analysis",
+        eyebrow: "AI powered movie poster analysis",
+        h1: 'Decode the genre behind <span class="gradient-text">every poster.</span>',
+        heroCopy: "GenreVision analyzes a movie poster's colors, composition, visual texture, and cinematic signals to predict which genres the film belongs to in seconds — your visual intelligence platform for cinema.",
+        metricModelLabel: "Deep learning model",
+        metricGenre: "19 genres", metricGenreLabel: "Multi-genre prediction",
+        metricCloudLabel: "Railway + FastAPI",
+        dropTitle: "Drop the poster in the lab.",
+        dropSubtitle: "Drag and drop, select a file, or paste a poster URL. The system reads the poster and returns genre probabilities as a cinematic report.",
+        chooseFile: "Choose File",
+        urlPlaceholder: "Paste poster image link: https://...",
+        analyzeBtn: "Analyze",
+        fileMeta: "JPG, PNG, WEBP supported. Recommended max file: 20MB.",
+        fileSelectedMsg: "selected",
+        flow1Title: "1. Receives poster", flow1Desc: "The file or URL uploaded by the user is sent to the analysis pipeline.",
+        flow2Title: "2. Model reads", flow2Desc: "ResNet18 examines the visual patterns and genre signals in the poster.",
+        flow3Title: "3. Generates results", flow3Desc: "Probabilities for 19 genres, confidence score, and visual interpretation are returned.",
+        panelSmall: "Live Intelligence", panelH2: "AI Genre Prediction",
+        statusReady: "Analysis Ready", statusScanning: "Scanning Poster",
+        statusComplete: "Analysis Complete", statusDemo: "Demo Result",
+        posterPreviewTitle: "Poster Preview",
+        posterPreviewDesc: "The poster to be analyzed appears here in a cinematic frame.",
+        confidenceDesc: "The overall confidence score is based on the model's strongest genre prediction.",
+        topSignalLabel: "Top Signal:",
+        genreMatrix: "Genre Probability Matrix",
+        mockPreview: "Mock preview", apiUnavailable: "API unavailable",
+        analyzingPixels: "Analyzing pixels...",
+        featuresLabel: "Features",
+        feat1Title: "Poster Intelligence", feat1Desc: "Smart analysis that interprets color, framing, character pose, and visual tone in a poster.",
+        feat2Title: "Cloud Ready", feat2Desc: "Production-ready with Cloudflare R2 storage and FastAPI service on Railway.",
+        feat3Title: "Fast Prediction", feat3Desc: "Send a poster with one click; the model returns genre probabilities in seconds.",
+        feat4Title: "19 Genre Output", feat4Desc: "Multi-genre prediction for Action, Drama, Horror, Animation, Romance, War and more.",
+        toastScanning: "GenreVision is scanning the poster...",
+        toastComplete: "Analysis complete. Genre probabilities updated.",
+        toastApiError: "API did not respond; demo result shown.",
+        toastNoUrl: "Please paste a poster image link first.",
+        toastUrlPreview: "Poster preview loaded from URL.",
+        toastInvalidFile: "Please upload a JPG, PNG, or WEBP image.",
+        modelSelectorLabel: "Select Model",
+        modelCustomArch: "Custom · v3",
+        modelResnet50Arch: "Deeper · v4",
+        modelEfficientArch: "B0 · Efficient",
+        locale: "en-US",
+        pageTitle: "GenreVision | AI Movie Poster Analysis"
+      }
+    };
+
+    let currentLang = "tr";
+    let currentSelectedFile = null;
+    let lastRenderedGenres = [];
+    let selectedModel = "custom";
+
+    const genreTranslations = {
+      "Sci-Fi": "Bilim Kurgu",
+      "Thriller": "Gerilim",
+      "Mystery": "Gizem",
+      "Drama": "Dram",
+      "Action": "Aksiyon",
+      "Romance": "Romantik",
+      "Comedy": "Komedi",
+      "War": "Savaş",
+      "Horror": "Korku",
+      "Crime": "Suç",
+      "Animation": "Animasyon",
+      "Adventure": "Macera",
+      "Family": "Aile",
+      "Fantasy": "Fantastik",
+      "Documentary": "Belgesel",
+      "History": "Tarih",
+      "Music": "Müzik",
+      "Western": "Vahşi Batı",
+      "Biography": "Biyografi"
+    };
+
+    function getLocalizedGenre(genreName) {
+      if (currentLang === "tr" && genreTranslations[genreName]) {
+        return genreTranslations[genreName];
+      }
+      return genreName;
+    }
+
+    function t(key) {
+      return lang[currentLang][key] || lang.en[key] || key;
+    }
+
+    function updateFileMeta() {
+      if (currentSelectedFile) {
+        const sizeMB = (currentSelectedFile.size / 1024 / 1024).toFixed(2);
+        fileMeta.textContent = `${currentSelectedFile.name} ${t("fileSelectedMsg")}. ${sizeMB} MB`;
+      } else {
+        fileMeta.textContent = t("fileMeta");
+      }
+    }
+
+    function translatePage() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (key === "h1") {
+          el.innerHTML = t(key);
+        } else {
+          el.textContent = t(key);
+        }
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
+      });
+      statusText.textContent = t("statusReady");
+      updatedText.textContent = t("mockPreview");
+      updateFileMeta();
+      document.documentElement.lang = currentLang;
+      document.title = t("pageTitle");
+
+      if (lastRenderedGenres.length > 0) {
+        renderGenres(lastRenderedGenres);
+      }
+    }
+
+    // Backend endpoints
     const API_BASE = "https://genrevision-production.up.railway.app";
-    const API_URL = API_BASE + "/predict";          // URL bazlı tahmin (JSON)
-    const API_FILE_URL = API_BASE + "/predict_file"; // Dosya yükleme tahmini (multipart)
+    const API_URL = API_BASE + "/predict";
+    const API_FILE_URL = API_BASE + "/predict_file";
 
     const defaultGenres = [
-      { name: "Sci-Fi", value: 92, color: "#35e6ff" },
-      { name: "Thriller", value: 76, color: "#b07cff" },
-      { name: "Mystery", value: 64, color: "#19d4bd" },
-      { name: "Drama", value: 48, color: "#ff934f" },
-      { name: "Action", value: 37, color: "#ff4d6d" }
+      { name: "Sci-Fi",    value: 92, color: "#35e6ff" },
+      { name: "Thriller",  value: 76, color: "#b07cff" },
+      { name: "Mystery",   value: 64, color: "#19d4bd" },
+      { name: "Drama",     value: 48, color: "#ff934f" },
+      { name: "Action",    value: 37, color: "#ff4d6d" }
     ];
 
     const genrePalettes = [
       [
-        { name: "Drama", value: 84, color: "#ff934f" },
+        { name: "Drama",   value: 84, color: "#ff934f" },
         { name: "Romance", value: 72, color: "#ff7ab6" },
         { name: "Mystery", value: 55, color: "#b07cff" },
-        { name: "Comedy", value: 34, color: "#ffbd5a" },
-        { name: "War", value: 28, color: "#94a3b8" }
+        { name: "Comedy",  value: 34, color: "#ffbd5a" },
+        { name: "War",     value: 28, color: "#94a3b8" }
       ],
       [
-        { name: "Horror", value: 89, color: "#ff4d6d" },
-        { name: "Thriller", value: 81, color: "#b07cff" },
+        { name: "Horror",  value: 89, color: "#ff4d6d" },
+        { name: "Thriller",value: 81, color: "#b07cff" },
         { name: "Mystery", value: 62, color: "#35e6ff" },
-        { name: "Drama", value: 43, color: "#ff934f" },
-        { name: "Crime", value: 35, color: "#19d4bd" }
+        { name: "Drama",   value: 43, color: "#ff934f" },
+        { name: "Crime",   value: 35, color: "#19d4bd" }
       ],
       [
         { name: "Animation", value: 91, color: "#ffbd5a" },
         { name: "Adventure", value: 78, color: "#35e6ff" },
-        { name: "Family", value: 71, color: "#63ffb6" },
-        { name: "Comedy", value: 58, color: "#ff934f" },
-        { name: "Fantasy", value: 46, color: "#b07cff" }
+        { name: "Family",    value: 71, color: "#63ffb6" },
+        { name: "Comedy",    value: 58, color: "#ff934f" },
+        { name: "Fantasy",   value: 46, color: "#b07cff" }
       ],
       defaultGenres
     ];
 
-    const dropzone = document.getElementById("dropzone");
-    const posterFile = document.getElementById("posterFile");
-    const posterUrl = document.getElementById("posterUrl");
-    const analyzeUrlBtn = document.getElementById("analyzeUrlBtn");
-    const previewImage = document.getElementById("previewImage");
-    const posterPreview = document.getElementById("posterPreview");
-    const fileMeta = document.getElementById("fileMeta");
-    const genreList = document.getElementById("genreList");
-    const statusText = document.getElementById("statusText");
-    const updatedText = document.getElementById("updatedText");
+    const dropzone       = document.getElementById("dropzone");
+    const posterFile     = document.getElementById("posterFile");
+    const posterUrl      = document.getElementById("posterUrl");
+    const analyzeUrlBtn  = document.getElementById("analyzeUrlBtn");
+    const previewImage   = document.getElementById("previewImage");
+    const posterPreview  = document.getElementById("posterPreview");
+    const fileMeta       = document.getElementById("fileMeta");
+    const genreList      = document.getElementById("genreList");
+    const statusText     = document.getElementById("statusText");
+    const updatedText    = document.getElementById("updatedText");
     const confidenceText = document.getElementById("confidenceText");
-    const scoreRing = document.getElementById("scoreRing");
-    const topSignal = document.getElementById("topSignal");
-    const insightText = document.getElementById("insightText");
-    const toast = document.getElementById("toast");
+    const scoreRing      = document.getElementById("scoreRing");
+    const topSignal      = document.getElementById("topSignal");
+    const toast          = document.getElementById("toast");
 
     function showToast(message) {
       toast.textContent = message;
@@ -1289,6 +1231,7 @@
     }
 
     function renderGenres(genres) {
+      lastRenderedGenres = genres;
       genreList.innerHTML = "";
       genres.forEach((genre, index) => {
         const row = document.createElement("div");
@@ -1296,7 +1239,7 @@
         row.style.setProperty("--bar-color", genre.color);
         row.innerHTML = `
           <div class="genre-head">
-            <div class="genre-name"><span class="genre-dot"></span>${genre.name}</div>
+            <div class="genre-name"><span class="genre-dot"></span>${getLocalizedGenre(genre.name)}</div>
             <div class="genre-value">${genre.value}%</div>
           </div>
           <div class="bar"><div class="bar-fill"></div></div>
@@ -1312,7 +1255,7 @@
       const top = genres[0];
       confidenceText.textContent = top.value + "%";
       scoreRing.style.setProperty("--score", top.value);
-      topSignal.textContent = genres.slice(0, 2).map(g => g.name).join(" / ");
+      topSignal.textContent = genres.slice(0, 2).map(g => getLocalizedGenre(g.name)).join(" / ");
     }
 
     function setPreviewFromUrl(url) {
@@ -1324,13 +1267,11 @@
       const reader = new FileReader();
       reader.onload = event => setPreviewFromUrl(event.target.result);
       reader.readAsDataURL(file);
-      fileMeta.textContent = `${file.name} seçildi. ${(file.size / 1024 / 1024).toFixed(2)} MB`;
+      currentSelectedFile = file;
+      updateFileMeta();
     }
 
     function normalizeApiResponse(data) {
-      // Backend cevap formatı: { turler: {...}, tum_skorlar: {...}, top_5: {...} }
-      // Frontend bar listesi için top_5'i kullan (her zaman 5 öğe içeriyor).
-      // Eğer top_5 yoksa turler veya tum_skorlar'a düş.
       const colors = ["#35e6ff", "#b07cff", "#19d4bd", "#ff934f", "#ff4d6d", "#63ffb6", "#ffbd5a"];
 
       let source = null;
@@ -1361,13 +1302,9 @@
     }
 
     async function callApiWithFile(file) {
-      // Dosya yükleme: /predict_file endpoint'ine multipart/form-data
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(API_FILE_URL, {
-        method: "POST",
-        body: formData
-      });
+      const response = await fetch(`${API_FILE_URL}?model=${selectedModel}`, { method: "POST", body: formData });
       if (!response.ok) {
         const errText = await response.text().catch(() => response.statusText);
         throw new Error(`API ${response.status}: ${errText}`);
@@ -1376,11 +1313,10 @@
     }
 
     async function callApiWithUrl(url) {
-      // URL bazlı: /predict endpoint'ine JSON
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}?model=${selectedModel}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: url })
+        body: JSON.stringify({ url })
       });
       if (!response.ok) {
         const errText = await response.text().catch(() => response.statusText);
@@ -1390,34 +1326,30 @@
     }
 
     async function runAnalysis({ file, url } = {}) {
-      statusText.textContent = "Scanning Poster";
-      updatedText.textContent = "Analyzing pixels...";
+      statusText.textContent = t("statusScanning");
+      updatedText.textContent = t("analyzingPixels");
       dropzone.classList.add("scanning");
-      showToast("GenreVision afişi tarıyor...");
+      showToast(t("toastScanning"));
 
       try {
         const data = file ? await callApiWithFile(file) : await callApiWithUrl(url);
         const genres = normalizeApiResponse(data);
 
         if (!genres.length) {
-          throw new Error("API yanıtı geçersiz format döndürdü: " + JSON.stringify(data).slice(0, 200));
+          throw new Error("Invalid API response format: " + JSON.stringify(data).slice(0, 200));
         }
 
         renderGenres(genres);
-        statusText.textContent = "Analysis Complete";
-        updatedText.textContent = new Date().toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
-        insightText.textContent = `${genres[0].name} türü güçlü bir görsel sinyal veriyor. İkincil tahmin olan ${genres[1]?.name || "Drama"}, afişin renk dili ve kompozisyon yoğunluğu ile destekleniyor.`;
-        showToast("Analiz tamamlandı. Tür olasılıkları güncellendi.");
+        statusText.textContent = t("statusComplete");
+        updatedText.textContent = new Date().toLocaleTimeString(t("locale"), { hour: "2-digit", minute: "2-digit" });
+        showToast(t("toastComplete"));
       } catch (error) {
-        // Detayli hata logu (F12 console'da görünür) — debug için
-        console.error("[GenreVision] API çağrısı başarısız:", error);
-
-        // Kullanıcıya demo göster
+        console.error("[GenreVision] API error:", error);
         const fallback = genrePalettes[Math.floor(Math.random() * genrePalettes.length)];
         renderGenres(fallback);
-        statusText.textContent = "Demo Result";
-        updatedText.textContent = "API unavailable";
-        showToast("API yanıt vermedi; demo sonuç gösterildi. (Console'da hata detayı var)");
+        statusText.textContent = t("statusDemo");
+        updatedText.textContent = t("apiUnavailable");
+        showToast(t("toastApiError"));
       } finally {
         setTimeout(() => dropzone.classList.remove("scanning"), 500);
       }
@@ -1433,12 +1365,12 @@
     analyzeUrlBtn.addEventListener("click", () => {
       const url = posterUrl.value.trim();
       if (!url) {
-        showToast("Önce bir afiş görsel linki yapıştır.");
+        showToast(t("toastNoUrl"));
         posterUrl.focus();
         return;
       }
       setPreviewFromUrl(url);
-      fileMeta.textContent = "URL üzerinden afiş önizlemesi alındı.";
+      fileMeta.textContent = t("toastUrlPreview");
       runAnalysis({ url });
     });
 
@@ -1460,11 +1392,30 @@
       const file = event.dataTransfer.files?.[0];
       if (!file) return;
       if (!file.type.startsWith("image/")) {
-        showToast("Lütfen JPG, PNG veya WEBP formatında bir görsel yükle.");
+        showToast(t("toastInvalidFile"));
         return;
       }
       setPreviewFromFile(file);
       runAnalysis({ file });
+    });
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const selected = btn.getAttribute("data-lang");
+        if (selected === currentLang) return;
+        currentLang = selected;
+        document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b === btn));
+        translatePage();
+      });
+    });
+
+    document.querySelectorAll(".model-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const model = btn.getAttribute("data-model");
+        if (model === selectedModel) return;
+        selectedModel = model;
+        document.querySelectorAll(".model-btn").forEach(b => b.classList.toggle("active", b === btn));
+      });
     });
 
     renderGenres(defaultGenres);
