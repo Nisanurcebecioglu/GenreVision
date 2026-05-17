@@ -1105,6 +1105,7 @@
     let currentSelectedFile = null;
     let lastRenderedGenres = [];
     let selectedModel = "custom";
+    let currentInput = null;
 
     const genreTranslations = {
       "Sci-Fi": "Bilim Kurgu",
@@ -1359,6 +1360,7 @@
       const file = event.target.files?.[0];
       if (!file) return;
       setPreviewFromFile(file);
+      currentInput = { file };
       runAnalysis({ file });
     });
 
@@ -1371,6 +1373,7 @@
       }
       setPreviewFromUrl(url);
       fileMeta.textContent = t("toastUrlPreview");
+      currentInput = { url };
       runAnalysis({ url });
     });
 
@@ -1396,6 +1399,7 @@
         return;
       }
       setPreviewFromFile(file);
+      currentInput = { file };
       runAnalysis({ file });
     });
 
@@ -1415,6 +1419,10 @@
         if (model === selectedModel) return;
         selectedModel = model;
         document.querySelectorAll(".model-btn").forEach(b => b.classList.toggle("active", b === btn));
+        if (currentInput) {
+           showToast(`Afiş ${btn.querySelector('.model-btn-name').textContent} ile yeniden analiz ediliyor...`);
+           runAnalysis(currentInput);
+        }
       });
     });
 
