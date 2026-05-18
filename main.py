@@ -37,14 +37,6 @@ MODEL_CONFIGS = {
         'local_model': 'genre_vision_v4_best.pth',
         'local_thresholds': 'best_thresholds_v4.npy',
     },
-    'efficientnet': {
-        'display_name': 'GenreVision EfficientNet-B0',
-        'arch': 'efficientnet_b0',
-        'r2_model': 'model/genre_vision_efficientnet.pth',
-        'r2_thresholds': 'model/best_thresholds_efficientnet.npy',
-        'local_model': 'genre_vision_efficientnet.pth',
-        'local_thresholds': 'best_thresholds_efficientnet.npy',
-    },
 }
 
 DEFAULT_MODEL = 'custom'
@@ -120,10 +112,6 @@ def build_model_arch(arch: str, num_classes: int) -> nn.Module:
     elif arch == 'resnet50':
         base = models.resnet50(weights=None)
         base.fc = nn.Sequential(nn.Dropout(p=0.5), nn.Linear(base.fc.in_features, num_classes))
-    elif arch == 'efficientnet_b0':
-        base = models.efficientnet_b0(weights=None)
-        in_features = base.classifier[1].in_features
-        base.classifier = nn.Sequential(nn.Dropout(p=0.5), nn.Linear(in_features, num_classes))
     else:
         raise ValueError(f'Bilinmeyen mimari: {arch}')
     return base

@@ -715,7 +715,7 @@
 
     .model-btns {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
 
@@ -873,11 +873,7 @@
                 <span class="model-btn-name">ResNet50</span>
                 <span class="model-btn-arch" data-i18n="modelResnet50Arch">Deeper · v4</span>
               </button>
-              <button class="model-btn" data-model="efficientnet">
-                <span class="model-btn-name">EfficientNet</span>
-                <span class="model-btn-arch" data-i18n="modelEfficientArch">B0 · Efficient</span>
-              </button>
-            </div>
+                    </div>
           </div>
 
           <div class="dropzone" id="dropzone">
@@ -1048,7 +1044,6 @@
         modelSelectorLabel: "Model Seç",
         modelCustomArch: "Özel · v3",
         modelResnet50Arch: "Derin · v4",
-        modelEfficientArch: "B0 · Verimli",
         locale: "tr-TR",
         pageTitle: "GenreVision | AI Film Afişi Analizi"
       },
@@ -1095,7 +1090,6 @@
         modelSelectorLabel: "Select Model",
         modelCustomArch: "Custom · v3",
         modelResnet50Arch: "Deeper · v4",
-        modelEfficientArch: "B0 · Efficient",
         locale: "en-US",
         pageTitle: "GenreVision | AI Movie Poster Analysis"
       }
